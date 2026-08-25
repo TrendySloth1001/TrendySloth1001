@@ -18,39 +18,45 @@ either. Both clients are Flutter. Redis and MinIO sit behind it, all on Docker.
 The parts worth the trouble have been the account-linking model between merchants
 and customers, the POS payment flows, and keeping the accounting auditable.
 
-### Built with
+### Technologies
+
+**Languages and frameworks**
 
 <table>
 <tr>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/typescript/FF6B00" width="34" height="34" alt="" /><br /><sub>TypeScript</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/dart/FF6B00" width="34" height="34" alt="" /><br /><sub>Dart</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/flutter/FF6B00" width="34" height="34" alt="" /><br /><sub>Flutter</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/react/FF6B00" width="34" height="34" alt="" /><br /><sub>React</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/nodedotjs/FF6B00" width="34" height="34" alt="" /><br /><sub>Node.js</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/express/FF6B00" width="34" height="34" alt="" /><br /><sub>Express</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/python/FF6B00" width="34" height="34" alt="" /><br /><sub>Python</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/typescript" width="38" height="38" alt="" /><br /><sub>TypeScript</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/dart" width="38" height="38" alt="" /><br /><sub>Dart</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/flutter" width="38" height="38" alt="" /><br /><sub>Flutter</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/react" width="38" height="38" alt="" /><br /><sub>React</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/nodedotjs" width="38" height="38" alt="" /><br /><sub>Node.js</sub></td>
+<td align="center" width="95"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/express/FFFFFF" /><img src="https://cdn.simpleicons.org/express" width="38" height="38" alt="" /></picture><br /><sub>Express</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/python" width="38" height="38" alt="" /><br /><sub>Python</sub></td>
 </tr>
 </table>
 
-<table>
-<tr>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/postgresql/FF6B00" width="34" height="34" alt="" /><br /><sub>Postgres</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/prisma/FF6B00" width="34" height="34" alt="" /><br /><sub>Prisma</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/redis/FF6B00" width="34" height="34" alt="" /><br /><sub>Redis</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/redis/FF6B00" width="34" height="34" alt="" /><br /><sub>BullMQ</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/minio/FF6B00" width="34" height="34" alt="" /><br /><sub>MinIO</sub></td>
-</tr>
-</table>
+**Data and queues**
 
 <table>
 <tr>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/docker/FF6B00" width="34" height="34" alt="" /><br /><sub>Docker</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/nginx/FF6B00" width="34" height="34" alt="" /><br /><sub>Nginx</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/coolify/FF6B00" width="34" height="34" alt="" /><br /><sub>Coolify</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/cloudflare/FF6B00" width="34" height="34" alt="" /><br /><sub>Cloudflare</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/gnubash/FF6B00" width="34" height="34" alt="" /><br /><sub>SSH</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/linux/FF6B00" width="34" height="34" alt="" /><br /><sub>Linux</sub></td>
-<td align="center" width="86"><img src="https://cdn.simpleicons.org/git/FF6B00" width="34" height="34" alt="" /><br /><sub>Git</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/postgresql" width="38" height="38" alt="" /><br /><sub>PostgreSQL</sub></td>
+<td align="center" width="95"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/prisma/A9B4C4" /><img src="https://cdn.simpleicons.org/prisma" width="38" height="38" alt="" /></picture><br /><sub>Prisma</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/redis" width="38" height="38" alt="" /><br /><sub>Redis</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/redis" width="38" height="38" alt="" /><br /><sub>BullMQ</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/minio" width="38" height="38" alt="" /><br /><sub>MinIO</sub></td>
+</tr>
+</table>
+
+**Infrastructure and hosting**
+
+<table>
+<tr>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/docker" width="38" height="38" alt="" /><br /><sub>Docker</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/nginx" width="38" height="38" alt="" /><br /><sub>Nginx</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/coolify" width="38" height="38" alt="" /><br /><sub>Coolify</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/cloudflare" width="38" height="38" alt="" /><br /><sub>Cloudflare</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/gnubash" width="38" height="38" alt="" /><br /><sub>SSH</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/linux" width="38" height="38" alt="" /><br /><sub>Linux</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/git" width="38" height="38" alt="" /><br /><sub>Git</sub></td>
 </tr>
 </table>
 
