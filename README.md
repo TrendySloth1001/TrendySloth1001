@@ -1,147 +1,75 @@
-<div align="center">
+## Nikhil Binwal
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&pause=1200&color=6C8EBF&center=true&vCenter=true&width=620&lines=Hi%2C+I'm+Nikhil+Binwal;Flutter+%26+Dart+on+the+front;TypeScript+%26+Python+on+the+back;I+build+encrypted%2C+open-source+tools" alt="Flutter and Dart on the front, TypeScript and Python on the back — I build encrypted, open-source tools" />
+Fourth-year CSE student, specialising in AI/ML.
 
-<br/>
-
-[![Profile views](https://komarev.com/ghpvc/?username=TrendySloth1001&style=for-the-badge&color=6C8EBF&label=PROFILE+VIEWS)](https://github.com/TrendySloth1001)
-[![Repositories](https://img.shields.io/badge/REPOS-130-6C8EBF?style=for-the-badge)](https://github.com/TrendySloth1001?tab=repositories)
-
-</div>
+I'm drawn to the problems that start out as edge cases and quietly turn into the
+whole problem. A lot of my time goes into rethinking the flow a user actually
+takes through a product rather than the one we assumed they'd take, and into
+writing code that stays reasonable as it grows.
 
 ---
 
-### 👋 About
+### Currently building
 
-I'm a developer who likes building the whole thing — the app people touch and the
-system behind it. Most of my work lands in one of three buckets: **encrypted tools**
-that respect the user, **AI systems** that do something more interesting than a chat
-box, and **on-chain apps** where the ledger is doing real work.
+**[shopxy](https://github.com/TrendySloth1001/shopxy)** — a commerce and invoicing
+platform built as three surfaces over one backend:
 
-- 🔐 Currently building **[keepit](https://github.com/TrendySloth1001/keepit)** — an open-source, end-to-end encrypted vault
-- 🤖 Playing with retrieval pipelines, local LLMs, and agentic backends
-- ⛓️ Shipping on **Algorand** for transparent reward distribution
-- 💬 Ask me about Flutter architecture, RAG plumbing, or vector DBs
+- a **merchant** app for inventory, invoices, parties and vendors
+- a **customer** companion app showing invitations and per-shop invoice ledgers
+- a shared **Express + Prisma + Postgres** backend, with the same JWT shape across
+  both apps so one account works in either
 
----
-
-### 🛠️ Tech
-
-<div align="center">
-
-**Frontend & Mobile**
-
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-
-**Backend & Data**
-
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![Redis](https://img.shields.io/badge/BullMQ-DC382D?style=for-the-badge&logo=redis&logoColor=white)
-
-**AI & Infra**
-
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-![Qdrant](https://img.shields.io/badge/Qdrant-DC244C?style=for-the-badge&logo=qdrant&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![AWS S3](https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
-![Algorand](https://img.shields.io/badge/Algorand-000000?style=for-the-badge&logo=algorand&logoColor=white)
-
-</div>
+Both clients are Flutter, with web and desktop builds alongside mobile. The stack
+runs on Docker Compose — Postgres, Redis and MinIO — and the interesting parts have
+been the account-linking model between merchants and customers, POS payment flows,
+and keeping the accounting side auditable.
 
 ---
 
-### 🚀 Featured Projects
+### Technologies
+
+**Languages and frameworks**
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-#### 🔐 [keepit](https://github.com/TrendySloth1001/keepit)
-An open-source, end-to-end encrypted vault for your
-passwords, notes, keys, and files. Your data never
-leaves your device unencrypted.
-
-`Dart` `Flutter` `Cryptography`
-
-</td>
-<td width="50%" valign="top">
-
-#### 🤖 [argumentbot](https://github.com/TrendySloth1001/argumentbot)
-A real-time adversarial debate system where two LLMs
-argue opposing positions on any topic, scored by an
-impartial AI judge.
-
-`Dart` `LLMs` `Docker`
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-#### ⛓️ [Acehack-questly](https://github.com/TrendySloth1001/Acehack-questly)
-Turns everyday problems into quests. Students post
-tasks, others claim and solve them, and rewards are
-distributed transparently using Algorand.
-
-`Dart` `Algorand` `Web3`
-
-</td>
-<td width="50%" valign="top">
-
-#### 📚 [homework-server-v1](https://github.com/TrendySloth1001/homework-server-v1)
-A retrieval-augmented backend — LangChain, Qdrant
-vector search, BullMQ job queues, and Prisma over
-Postgres.
-
-`TypeScript` `LangChain` `Qdrant`
-
-</td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/typescript" width="38" height="38" alt="" /><br /><sub>TypeScript</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/dart" width="38" height="38" alt="" /><br /><sub>Dart</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/flutter" width="38" height="38" alt="" /><br /><sub>Flutter</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/react" width="38" height="38" alt="" /><br /><sub>React</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/nodedotjs" width="38" height="38" alt="" /><br /><sub>Node.js</sub></td>
+<td align="center" width="95">
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/express/FFFFFF" /><img src="https://cdn.simpleicons.org/express" width="38" height="38" alt="" /></picture>
+<br /><sub>Express</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/python" width="38" height="38" alt="" /><br /><sub>Python</sub></td>
 </tr>
 </table>
 
----
+**Data and queues**
 
-### 📊 Stats
+<table>
+<tr>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/postgresql" width="38" height="38" alt="" /><br /><sub>PostgreSQL</sub></td>
+<td align="center" width="95">
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/prisma/A9B4C4" /><img src="https://cdn.simpleicons.org/prisma" width="38" height="38" alt="" /></picture>
+<br /><sub>Prisma</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/redis" width="38" height="38" alt="" /><br /><sub>Redis</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/redis/A0A6AD" width="38" height="38" alt="" /><br /><sub>BullMQ</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/minio" width="38" height="38" alt="" /><br /><sub>MinIO</sub></td>
+</tr>
+</table>
 
-<div align="center">
+**Infrastructure and hosting**
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api?username=TrendySloth1001&show_icons=true&hide_border=true&theme=tokyonight&include_all_commits=true&count_private=true" />
-  <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=TrendySloth1001&show_icons=true&hide_border=true&theme=default&include_all_commits=true&count_private=true" alt="GitHub stats for TrendySloth1001" height="165" />
-</picture>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=TrendySloth1001&hide_border=true&theme=tokyonight" />
-  <img src="https://streak-stats.demolab.com?user=TrendySloth1001&hide_border=true&theme=default" alt="Contribution streak" height="165" />
-</picture>
+<table>
+<tr>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/docker" width="38" height="38" alt="" /><br /><sub>Docker</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/nginx" width="38" height="38" alt="" /><br /><sub>Nginx</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/coolify" width="38" height="38" alt="" /><br /><sub>Coolify</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/cloudflare" width="38" height="38" alt="" /><br /><sub>Cloudflare</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/gnubash" width="38" height="38" alt="" /><br /><sub>SSH</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/linux" width="38" height="38" alt="" /><br /><sub>Linux</sub></td>
+<td align="center" width="95"><img src="https://cdn.simpleicons.org/git" width="38" height="38" alt="" /><br /><sub>Git</sub></td>
+</tr>
+</table>
 
-<br/><br/>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=TrendySloth1001&layout=compact&hide_border=true&theme=tokyonight&langs_count=8" />
-  <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=TrendySloth1001&layout=compact&hide_border=true&theme=default&langs_count=8" alt="Most used languages" height="150" />
-</picture>
-
-<br/><br/>
-
-<img src="https://ghchart.rshah.org/6C8EBF/TrendySloth1001" alt="Contribution chart for TrendySloth1001" width="100%" />
-
-</div>
-
----
-
-<div align="center">
-
-### 🤝 Connect
-
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/TrendySloth1001)
-
-<sub>⭐ If something here is useful to you, a star means a lot.</sub>
-
-</div>
+<sub>Deploys go out through Coolify, with Cloudflare Tunnels and plain SSH doing the reaching-in. BullMQ and SSH have no official brand mark, so they borrow the Redis and shell icons above.</sub>
