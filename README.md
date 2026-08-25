@@ -1,4 +1,4 @@
-## Nikhil Binwal
+<img src="./header.svg" width="100%" alt="Nikhil Binwal" />
 
 Fourth-year CSE student, specialising in AI/ML.
 
