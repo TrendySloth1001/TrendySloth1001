@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
+    --sans: "Space Grotesk", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+    --mono: "Space Mono", ui-monospace, Menlo, monospace;
     --bg: #fbfaf7;
     --ink: #1c1b19;
     --muted: #6b6862;
@@ -29,83 +31,121 @@
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 "Space Grotesk", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
-  }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); }
   main { max-width: 720px; margin: 0 auto; padding: 64px 20px 96px; }
   a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 3px; }
   a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  button { font: inherit; color: inherit; }
+  .mono { font-family: var(--mono); }
 
-  header h1 {
-    font: 500 44px/1.05 "Space Grotesk", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
-    margin: 0 0 12px;
-    letter-spacing: -0.03em;
-  }
+  header h1 { font: 500 44px/1.05 var(--sans); margin: 0 0 12px; letter-spacing: -0.03em; }
   header p { margin: 0 0 16px; color: var(--muted); max-width: 56ch; }
   .links { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 15px; }
-  .print { margin-left: auto; background: none; border: 0; padding: 0; font: 12px "Space Mono", ui-monospace, Menlo, monospace; color: var(--muted); cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .links a { display: inline-flex; align-items: center; gap: 6px; }
+  .print { margin-left: auto; background: none; border: 0; padding: 0; font: 12px var(--mono); color: var(--muted); cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
   .print:hover { color: var(--accent); }
+  .ico { width: 14px; height: 14px; flex: none; }
 
   section { margin-top: 56px; }
   h2 {
-    font: 400 12px/1.4 "Space Mono", ui-monospace, Menlo, monospace; letter-spacing: 0.04em; text-transform: uppercase;
+    font: 400 12px/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase;
     color: var(--muted); margin: 0 0 20px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   }
+  h3.sub { font: 400 11px/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+
+  /* tooltip */
+  .tip {
+    position: fixed; z-index: 10; pointer-events: none; max-width: 280px;
+    font: 12px/1.45 var(--mono); padding: 6px 9px; border-radius: 4px;
+    background: var(--ink); color: var(--bg);
+    transform: translate(-50%, calc(-100% - 8px)); opacity: 0; transition: opacity .12s;
+  }
+  .tip.show { opacity: 1; }
+  .tip.below { transform: translate(-50%, 8px); }
+  [data-tip] { cursor: default; }
+  a[data-tip] { cursor: pointer; }
 
   /* contributions */
-  .graph { position: relative; }
-  .graph svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .cell { cursor: default; }
+  .tabs { margin-left: auto; display: flex; gap: 2px; text-transform: none; letter-spacing: 0; }
+  .tabs button { background: none; border: 1px solid transparent; border-radius: 999px; padding: 2px 9px; font: 12px var(--mono); color: var(--muted); cursor: pointer; }
+  .tabs button:hover { color: var(--ink); }
+  .tabs button[aria-pressed="true"] { color: var(--ink); border-color: var(--rule); }
+  .graph svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: manipulation; }
+  .cell { cursor: pointer; transition: opacity .15s; }
   .cell .t { fill: var(--c); }
   .cell .f { fill: color-mix(in srgb, var(--c), #000 16%); }
   .cell .s { fill: color-mix(in srgb, var(--c), #000 32%); }
   .cell:hover .t, .cell.on .t { fill: var(--accent); }
   .cell:hover .f, .cell.on .f { fill: color-mix(in srgb, var(--accent), #000 20%); }
   .cell:hover .s, .cell.on .s { fill: color-mix(in srgb, var(--accent), #000 38%); }
-  .month { font: 9px "Space Mono", ui-monospace, Menlo, monospace; fill: var(--muted); }
-  .tip {
-    position: absolute; pointer-events: none; white-space: nowrap;
-    font: 12px "Space Mono", ui-monospace, Menlo, monospace; padding: 5px 8px; border-radius: 4px;
-    background: var(--ink); color: var(--bg);
-    transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .1s;
-  }
-  .tip.show { opacity: 1; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
-  .stats div { font-size: 13px; color: var(--muted); }
-  .stats b { display: block; font: 400 22px/1.2 "Space Mono", ui-monospace, Menlo, monospace; color: var(--ink); }
-  .legend { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); margin-top: 12px; justify-content: flex-end; }
+  svg.dim .cell:not(.hl) { opacity: .18; }
+  .month { font: 9px var(--mono); fill: var(--muted); }
+  .under { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; font: 12px var(--mono); color: var(--muted); }
+  .legend { display: flex; align-items: center; gap: 4px; }
   .legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .detail { min-height: 1.6em; }
+  .detail b { color: var(--ink); font-weight: 400; }
+  .detail button { background: none; border: 0; padding: 0 0 0 8px; color: var(--muted); cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+  .months { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; margin-top: 24px; height: 72px; align-items: end; }
+  .months button { position: relative; height: 100%; background: none; border: 0; padding: 0 0 16px; cursor: pointer; display: flex; align-items: flex-end; }
+  .months i { display: block; width: 100%; background: var(--l2); border-radius: 2px 2px 0 0; min-height: 2px; transition: background .15s; }
+  .months span { position: absolute; bottom: 0; left: 0; right: 0; font: 9px var(--mono); color: var(--muted); text-align: center; }
+  .months button:hover i, .months button.on i { background: var(--accent); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+  .stats div { font-size: 13px; color: var(--muted); }
+  .stats b { display: block; font: 400 22px/1.2 var(--mono); color: var(--ink); }
+
+  .kinds { display: flex; height: 8px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--bg); margin: 36px 0 10px; }
+  .kinds i { display: block; min-width: 3px; }
+  .kinds-key { display: flex; flex-wrap: wrap; gap: 4px 18px; font: 12px var(--mono); color: var(--muted); }
+  .kinds-key span { display: inline-flex; align-items: center; gap: 6px; }
+  .kinds-key i { width: 8px; height: 8px; border-radius: 2px; }
+  .kinds-key b { color: var(--ink); font-weight: 400; }
+
+  .lower { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; margin-top: 36px; }
+  .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; height: 88px; align-items: end; }
+  .week div { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; }
+  .week i { display: block; width: 100%; background: var(--l3); border-radius: 2px 2px 0 0; min-height: 2px; }
+  .week span { font: 9px var(--mono); color: var(--muted); }
+  .repos { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  .repos li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; margin-bottom: 10px; }
+  .repos .bar { grid-column: 1 / -1; height: 3px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+  .repos .bar i { display: block; height: 100%; }
+  .repos .n { font: 12px var(--mono); color: var(--muted); }
+  .empty { font: 12px var(--mono); color: var(--muted); }
 
   /* work */
   .project { padding: 0 0 28px; }
   .project + .project { padding-top: 28px; border-top: 1px solid var(--rule); }
   .project h3 { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; font-size: 18px; font-weight: 600; }
-  .project h3 span { font: 12px "Space Mono", ui-monospace, Menlo, monospace; font-weight: 400; color: var(--muted); }
+  .project h3 span { font: 12px var(--mono); color: var(--muted); }
   .project p { margin: 0 0 8px; }
-  .meta { font: 12px/1.6 "Space Mono", ui-monospace, Menlo, monospace; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .meta { font: 12px/1.6 var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
   .meta a { color: var(--ink); }
 
-  .links a { display: inline-flex; align-items: center; gap: 6px; }
-  .ico { width: 14px; height: 14px; flex: none; }
   .pills { display: flex; flex-wrap: wrap; gap: 6px; }
   .pill {
     display: inline-flex; align-items: center; gap: 6px;
-    font: 12px/1 "Space Mono", ui-monospace, Menlo, monospace; padding: 6px 10px 6px 8px;
-    border: 1px solid var(--rule); border-radius: 999px;
+    font: 12px/1 var(--mono); padding: 6px 10px 6px 8px;
+    border: 1px solid var(--rule); border-radius: 999px; transition: border-color .15s;
   }
+  .pill:hover { border-color: var(--muted); }
   dl { display: grid; grid-template-columns: 120px 1fr; gap: 10px 20px; margin: 0; }
-  dt { color: var(--muted); font: 12px/1.4 "Space Mono", ui-monospace, Menlo, monospace; padding-top: 7px; text-transform: uppercase; letter-spacing: 0.04em; }
+  dt { color: var(--muted); font: 12px/1.4 var(--mono); padding-top: 7px; text-transform: uppercase; letter-spacing: 0.04em; }
   dd { margin: 0; }
 
-  footer { margin-top: 72px; font: 12px "Space Mono", ui-monospace, Menlo, monospace; color: var(--muted); }
+  footer { margin-top: 72px; font: 12px var(--mono); color: var(--muted); }
 
   @media (max-width: 560px) {
     main { padding-top: 40px; }
     header h1 { font-size: 32px; }
+    .tabs { margin-left: 0; width: 100%; overflow-x: auto; }
     .stats { grid-template-columns: repeat(2, 1fr); }
+    .lower { grid-template-columns: 1fr; gap: 28px; }
+    .under { flex-direction: column; align-items: flex-start; }
     dl { grid-template-columns: 1fr; gap: 2px; }
     dd { margin-bottom: 12px; }
   }
@@ -113,8 +153,9 @@
   @media print {
     :root { --bg: #fff; --ink: #000; --muted: #555; --rule: #ccc; }
     main { padding: 0; max-width: none; }
-    .print, .graph, .legend, footer { display: none; }
+    .print, .tabs, .graph, .under, .months, .kinds, .kinds-key, .lower, .tip, footer { display: none; }
     section { margin-top: 24px; break-inside: avoid-page; }
+    .stats { margin-top: 0; }
     .project { break-inside: avoid; }
     a { text-decoration: none; }
     .links a[href^="http"]::after { content: " (" attr(data-print) ")"; color: var(--muted); }
@@ -128,30 +169,50 @@
   <h1>Nikhil Binwal</h1>
   <p>Fourth-year CSE student, specialising in AI/ML. I build mobile apps in Flutter and the TypeScript backends behind them, and I care most about the path a user actually takes through a product.</p>
   <div class="links">
-    <a href="mailto:nkumawat8956@gmail.com" data-print="nkumawat8956@gmail.com"><img class="ico" src="https://cdn.simpleicons.org/gmail" alt="" width="14" height="14">nkumawat8956@gmail.com</a>
-    <a href="https://github.com/TrendySloth1001" data-print="github.com/TrendySloth1001"><img class="ico" src="https://cdn.simpleicons.org/github/_/white" alt="" width="14" height="14">GitHub</a>
-    <a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/" data-print="linkedin.com/in/nikhil-binwal-78703b32b"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-    <a href="https://www.instagram.com/nikhilwh0/" data-print="instagram.com/nikhilwh0"><img class="ico" src="https://cdn.simpleicons.org/instagram" alt="" width="14" height="14">Instagram</a>
-    <button class="print" onclick="window.print()">Save as PDF</button>
+    <a href="mailto:nkumawat8956@gmail.com" data-print="nkumawat8956@gmail.com" data-tip="Email me"><img class="ico" src="https://cdn.simpleicons.org/gmail" alt="" width="14" height="14">nkumawat8956@gmail.com</a>
+    <a href="https://github.com/TrendySloth1001" data-print="github.com/TrendySloth1001" data-tip="github.com/TrendySloth1001"><img class="ico" src="https://cdn.simpleicons.org/github/_/white" alt="" width="14" height="14">GitHub</a>
+    <a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/" data-print="linkedin.com/in/nikhil-binwal-78703b32b" data-tip="linkedin.com/in/nikhil-binwal"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+    <a href="https://www.instagram.com/nikhilwh0/" data-print="instagram.com/nikhilwh0" data-tip="@nikhilwh0"><img class="ico" src="https://cdn.simpleicons.org/instagram" alt="" width="14" height="14">Instagram</a>
+    <button class="print" onclick="window.print()" data-tip="Prints this page as a one-page résumé">Save as PDF</button>
   </div>
 </header>
 
-<section>
-  <h2>Last twelve months</h2>
-  <div class="graph" id="graph">
-    <div class="tip" id="tip"></div>
+<section id="contrib">
+  <h2>Contributions <span class="tabs" id="tabs" role="group" aria-label="Period"></span></h2>
+  <div class="graph" id="graph"></div>
+  <div class="under">
+    <div class="detail" id="detail">Hover a day for its count, click to pin it.</div>
+    <div class="legend">Less <i style="background:var(--l0)"></i><i style="background:var(--l1)"></i><i style="background:var(--l2)"></i><i style="background:var(--l3)"></i><i style="background:var(--l4)"></i> More</div>
   </div>
-  <div class="legend">Less <i style="background:var(--l0)"></i><i style="background:var(--l1)"></i><i style="background:var(--l2)"></i><i style="background:var(--l3)"></i><i style="background:var(--l4)"></i> More</div>
+  <div class="months" id="months"></div>
   <div class="stats">
-    <div><b id="s-total">–</b>contributions</div>
-    <div><b id="s-best">–</b>busiest day</div>
-    <div><b id="s-cur">–</b>current streak</div>
-    <div><b id="s-long">–</b>longest streak</div>
+    <div data-tip="Commits, pull requests, issues, reviews and private work, as GitHub counts them"><b id="s-total">–</b>contributions</div>
+    <div id="s-active-wrap"><b id="s-active">–</b>active days</div>
+    <div id="s-long-wrap"><b id="s-long">–</b>longest streak</div>
+    <div id="s-best-wrap"><b id="s-best">–</b>busiest day</div>
+  </div>
+  <div class="kinds" id="kinds"></div>
+  <div class="kinds-key" id="kinds-key"></div>
+  <div class="lower">
+    <div>
+      <h3 class="sub">Average by weekday</h3>
+      <div class="week" id="week"></div>
+    </div>
+    <div>
+      <h3 class="sub">Most commits to</h3>
+      <ul class="repos" id="repos"></ul>
+    </div>
   </div>
 </section>
 
 <section>
   <h2>Selected work</h2>
+
+  <div class="project">
+    <h3>Agent Worker <span>2026</span></h3>
+    <p>A personal AI assistant: an Android app in Flutter on an Express and Postgres backend. Each turn is routed across Ollama, OpenAI and OpenRouter models and grounded in your own files, notes, the web, GitHub, Notion and Drive. Search is hybrid, pgvector plus keyword, fused with reciprocal rank fusion and reranked. It keeps long-term memory between chats, and answers about a video cite timestamps from its keyframes and transcript.</p>
+    <div class="meta">Flutter · Express · Prisma · PostgreSQL · pgvector · Ollama · OpenRouter <a href="https://github.com/TrendySloth1001/Agent-worker">Code</a></div>
+  </div>
 
   <div class="project">
     <h3>shopxy <span>2026</span></h3>
@@ -170,118 +231,225 @@
     <p>Type a word, get as many sentences as you want. Two language models written from scratch, an n-gram model on a suffix array and a small LSTM, grow sentences around the word, then rank, filter and explain each one mathematically.</p>
     <div class="meta">Next.js · TypeScript · Python · PyTorch <a href="https://wordseed-five.vercel.app">Live</a> <a href="https://github.com/TrendySloth1001/wordseed">Code</a></div>
   </div>
-
-  <div class="project">
-    <h3>MrArgue <span>2026</span></h3>
-    <p>Two local LLMs debate opposite sides of any topic while a third judges each turn on claim quality and how directly it answers the other side. Responses stream over SSE, and retrieval adds factual context to each argument.</p>
-    <div class="meta">NestJS · Flutter · Ollama · RAG <a href="https://github.com/TrendySloth1001/argumentbot">Code</a></div>
-  </div>
-
-  <div class="project">
-    <h3>Questly <span>AceHack 5.0</span></h3>
-    <p>A bounty board for real-world tasks. People pin a task on a map with an ALGO reward held in smart-contract escrow; someone claims it, submits photo proof, and is paid on-chain when the poster approves.</p>
-    <div class="meta">Flutter · Node.js · Algorand <a href="https://questly.anskservices.com">Live</a> <a href="https://github.com/TrendySloth1001/Acehack-questly">Code</a></div>
-  </div>
 </section>
 
 <section>
   <h2>Stack</h2>
   <dl>
-    <dt>Languages</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/typescript" alt="" width="14" height="14">TypeScript</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/javascript" alt="" width="14" height="14">JavaScript</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/dart" alt="" width="14" height="14">Dart</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/python" alt="" width="14" height="14">Python</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/cplusplus" alt="" width="14" height="14">C++</span></dd>
-    <dt>Frameworks</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/flutter" alt="" width="14" height="14">Flutter</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/react" alt="" width="14" height="14">React</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nextdotjs/_/white" alt="" width="14" height="14">Next.js</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nodedotjs" alt="" width="14" height="14">Node.js</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/express/_/white" alt="" width="14" height="14">Express</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nestjs" alt="" width="14" height="14">NestJS</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/pytorch" alt="" width="14" height="14">PyTorch</span></dd>
-    <dt>Data</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/postgresql" alt="" width="14" height="14">PostgreSQL</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/prisma/_/white" alt="" width="14" height="14">Prisma</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">Redis</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">BullMQ</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/minio" alt="" width="14" height="14">MinIO</span></dd>
-    <dt>Infra</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/docker" alt="" width="14" height="14">Docker</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nginx" alt="" width="14" height="14">Nginx</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/coolify" alt="" width="14" height="14">Coolify</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/cloudflare" alt="" width="14" height="14">Cloudflare</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/linux" alt="" width="14" height="14">Linux</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/git" alt="" width="14" height="14">Git</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/gnubash" alt="" width="14" height="14">SSH</span></dd>
+    <dt>Languages</dt><dd class="pills"><span class="pill" tabindex="0" data-tip="Main language in 50 of my repos. Agent Worker, shopxy and Keepit backends, wordseed"><img class="ico" src="https://cdn.simpleicons.org/typescript" alt="" width="14" height="14">TypeScript</span><span class="pill" tabindex="0" data-tip="Main language in 10 of my repos"><img class="ico" src="https://cdn.simpleicons.org/javascript" alt="" width="14" height="14">JavaScript</span><span class="pill" tabindex="0" data-tip="Main language in 32 of my repos. Every Flutter app"><img class="ico" src="https://cdn.simpleicons.org/dart" alt="" width="14" height="14">Dart</span><span class="pill" tabindex="0" data-tip="Main language in 6 of my repos. wordseed&#x27;s models"><img class="ico" src="https://cdn.simpleicons.org/python" alt="" width="14" height="14">Python</span><span class="pill" tabindex="0" data-tip="Main language in 3 of my repos"><img class="ico" src="https://cdn.simpleicons.org/cplusplus" alt="" width="14" height="14">C++</span></dd>
+    <dt>Frameworks</dt><dd class="pills"><span class="pill" tabindex="0" data-tip="Agent Worker, shopxy, Keepit"><img class="ico" src="https://cdn.simpleicons.org/flutter" alt="" width="14" height="14">Flutter</span><span class="pill" tabindex="0" data-tip="Web front ends, including wordseed"><img class="ico" src="https://cdn.simpleicons.org/react" alt="" width="14" height="14">React</span><span class="pill" tabindex="0" data-tip="wordseed, Keepit&#x27;s docs site"><img class="ico" src="https://cdn.simpleicons.org/nextdotjs/_/white" alt="" width="14" height="14">Next.js</span><span class="pill" tabindex="0" data-tip="Agent Worker, shopxy and Keepit backends"><img class="ico" src="https://cdn.simpleicons.org/nodedotjs" alt="" width="14" height="14">Node.js</span><span class="pill" tabindex="0" data-tip="Agent Worker, shopxy, Keepit"><img class="ico" src="https://cdn.simpleicons.org/express/_/white" alt="" width="14" height="14">Express</span><span class="pill" tabindex="0" data-tip="MrArgue, an LLM debate app"><img class="ico" src="https://cdn.simpleicons.org/nestjs" alt="" width="14" height="14">NestJS</span><span class="pill" tabindex="0" data-tip="wordseed&#x27;s LSTM"><img class="ico" src="https://cdn.simpleicons.org/pytorch" alt="" width="14" height="14">PyTorch</span></dd>
+    <dt>Data</dt><dd class="pills"><span class="pill" tabindex="0" data-tip="Agent Worker (with pgvector), shopxy, Keepit"><img class="ico" src="https://cdn.simpleicons.org/postgresql" alt="" width="14" height="14">PostgreSQL</span><span class="pill" tabindex="0" data-tip="Agent Worker, shopxy, Keepit"><img class="ico" src="https://cdn.simpleicons.org/prisma/_/white" alt="" width="14" height="14">Prisma</span><span class="pill" tabindex="0" data-tip="Caching and queues behind shopxy"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">Redis</span><span class="pill" tabindex="0" data-tip="Background jobs on Redis"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">BullMQ</span><span class="pill" tabindex="0" data-tip="S3-compatible file storage for shopxy"><img class="ico" src="https://cdn.simpleicons.org/minio" alt="" width="14" height="14">MinIO</span></dd>
+    <dt>Infra</dt><dd class="pills"><span class="pill" tabindex="0" data-tip="Containers for shopxy and Agent Worker"><img class="ico" src="https://cdn.simpleicons.org/docker" alt="" width="14" height="14">Docker</span><span class="pill" tabindex="0" data-tip="Reverse proxy"><img class="ico" src="https://cdn.simpleicons.org/nginx" alt="" width="14" height="14">Nginx</span><span class="pill" tabindex="0" data-tip="Self-hosted deploys"><img class="ico" src="https://cdn.simpleicons.org/coolify" alt="" width="14" height="14">Coolify</span><span class="pill" tabindex="0" data-tip="Cloudflare Tunnels in front of my servers"><img class="ico" src="https://cdn.simpleicons.org/cloudflare" alt="" width="14" height="14">Cloudflare</span><span class="pill" tabindex="0" data-tip="The servers I run"><img class="ico" src="https://cdn.simpleicons.org/linux" alt="" width="14" height="14">Linux</span><span class="pill" tabindex="0" data-tip="Everything here"><img class="ico" src="https://cdn.simpleicons.org/git" alt="" width="14" height="14">Git</span><span class="pill" tabindex="0" data-tip="Server access, alongside Cloudflare Tunnels"><img class="ico" src="https://cdn.simpleicons.org/gnubash" alt="" width="14" height="14">SSH</span></dd>
   </dl>
 </section>
 
-<footer>Contribution data refreshes daily from GitHub.</footer>
+<footer id="updated">Contribution data refreshes daily from GitHub.</footer>
 
 </main>
+<div class="tip" id="tip" role="tooltip"></div>
 
 <script>
 (async function () {
-  const box = document.getElementById('graph');
-  const tip = document.getElementById('tip');
+  const $ = id => document.getElementById(id);
+  const tip = $('tip');
+  const n = x => x.toLocaleString('en');
+  const plural = (x, w) => `${n(x)} ${w}${x === 1 ? '' : 's'}`;
+  const dt = iso => new Date(iso + 'T00:00:00Z');
+  const fmt = (iso, o = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) =>
+    dt(iso).toLocaleDateString('en-GB', { ...o, timeZone: 'UTC' });
+
+  // One tooltip for the whole page. Anything with data-tip gets it; the graph sets text directly.
+  function showTip(text, el) {
+    tip.textContent = text;
+    const r = el.getBoundingClientRect();
+    const below = r.top < 60;
+    tip.classList.toggle('below', below);
+    const x = Math.min(Math.max(r.left + r.width / 2, 150), innerWidth - 150);
+    tip.style.left = x + 'px';
+    tip.style.top = (below ? r.bottom : r.top) + 'px';
+    tip.classList.add('show');
+  }
+  const hideTip = () => tip.classList.remove('show');
+  document.addEventListener('pointerover', e => {
+    const el = e.target.closest('[data-tip]');
+    if (el) showTip(el.dataset.tip, el);
+  });
+  document.addEventListener('pointerout', e => {
+    const el = e.target.closest('[data-tip], .cell');
+    if (el && !el.contains(e.relatedTarget)) hideTip();
+  });
+  document.addEventListener('focusin', e => { const el = e.target.closest('[data-tip]'); if (el) showTip(el.dataset.tip, el); });
+  document.addEventListener('focusout', hideTip);
+  addEventListener('scroll', hideTip, { passive: true });
+
   let data;
   try { data = await (await fetch('contributions.json', { cache: 'no-cache' })).json(); }
-  catch (e) { box.insertAdjacentHTML('afterbegin', '<p style="color:var(--muted)">Couldn’t load contribution data.</p>'); return; }
+  catch (e) { $('graph').innerHTML = '<p class="empty">Couldn’t load contribution data.</p>'; return; }
+  $('updated').textContent = `Contribution data from GitHub, last refreshed ${fmt(data.updated, { day: 'numeric', month: 'long', year: 'numeric' })}.`;
 
-  // weeks: [[ [date, count, level], ... ], ...]
-  const weeks = data.weeks;
-  const days = weeks.flat();
-  const max = Math.max(1, ...days.map(d => d[1]));
-
-  // Oblique projection: weeks run right and slightly down, weekdays run down-left.
-  const U = [11, 3.2], V = [-5.6, 5.4], H = 64;
-  const ox = 7 * -V[0] + 4, oy = H + 6;
-  const P = (w, d, z = 0) => [ox + w * U[0] + d * V[0], oy + w * U[1] + d * V[1] - z];
-  const pts = a => a.map(p => p.map(n => n.toFixed(1)).join(',')).join(' ');
-
-  const width = ox + weeks.length * U[0] + 6;
-  const height = oy + weeks.length * U[1] + 7 * V[1] + 18;
+  const KINDS = [
+    ['commits', 'Commits', 'var(--l4)', 'Commits to public repositories'],
+    ['prs', 'Pull requests', 'var(--l3)', 'Pull requests opened'],
+    ['reviews', 'Reviews', 'var(--l2)', 'Pull request reviews'],
+    ['issues', 'Issues', 'var(--l1)', 'Issues opened'],
+    ['repos', 'New repos', 'var(--muted)', 'Repositories created'],
+    ['private', 'Private', 'color-mix(in srgb, var(--muted), var(--bg) 55%)', 'Work in private repositories; GitHub shows only the count'],
+  ];
+  const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('viewBox', `0 0 ${width.toFixed(0)} ${height.toFixed(0)}`);
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', `${data.total} contributions in the last year`);
+  const graph = $('graph');
+  let svg, pinned = null, monthOn = null, current;
 
-  let html = '';
-  for (let d = 0; d < 7; d++) {
+  // tabs
+  data.periods.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.textContent = p.label;
+    b.dataset.tip = plural(p.total, 'contribution');
+    b.onclick = () => render(i);
+    $('tabs').append(b);
+  });
+
+  function render(i) {
+    const p = current = data.periods[i];
+    [...$('tabs').children].forEach((b, j) => b.setAttribute('aria-pressed', i === j));
+    pinned = null; monthOn = null;
+    const weeks = p.weeks;
+    const days = weeks.flat();
+    const max = Math.max(1, ...days.map(d => d[1]));
+    const active = days.filter(d => d[1]);
+    const sorted = active.map(d => d[1]).sort((a, b) => a - b);
+    const pct = c => Math.round(100 * sorted.filter(x => x < c).length / Math.max(1, sorted.length));
+    const weekTotal = w => weeks[w].reduce((s, d) => s + d[1], 0);
+
+    // 3D graph. Oblique projection: weeks run right and slightly down, weekdays run down-left.
+    const U = [11, 3.2], V = [-5.6, 5.4], H = 64;
+    const P = (w, d, z = 0) => [w * U[0] + d * V[0], w * U[1] + d * V[1] - z];
+    const pts = a => a.map(q => q.map(v => v.toFixed(1)).join(',')).join(' ');
+    let html = '';
+    for (let d = 0; d < 7; d++) {
+      weeks.forEach((week, w) => {
+        const day = week.find(x => dt(x[0]).getUTCDay() === d);
+        if (!day) return;
+        const [date, count, level] = day;
+        const z = count ? 2 + Math.sqrt(count / max) * H : 1;
+        const a = P(w, d, z), b = P(w + 1, d, z), c = P(w + 1, d + 1, z), e = P(w, d + 1, z);
+        html += `<g class="cell" style="--c:var(--l${level})" data-date="${date}" data-count="${count}" data-w="${w}" data-m="${date.slice(0, 7)}">` +
+          `<polygon class="f" points="${pts([e, c, P(w + 1, d + 1), P(w, d + 1)])}"/>` +
+          `<polygon class="s" points="${pts([b, c, P(w + 1, d + 1), P(w + 1, d)])}"/>` +
+          `<polygon class="t" points="${pts([a, b, c, e])}"/></g>`;
+      });
+    }
+    let last = -1;
     weeks.forEach((week, w) => {
-      const day = week.find(x => new Date(x[0] + 'T00:00:00Z').getUTCDay() === d);
-      if (!day) return;
-      const [date, count, level] = day;
-      const z = count ? 2 + Math.sqrt(count / max) * H : 1;
-      const a = P(w, d, z), b = P(w + 1, d, z), c = P(w + 1, d + 1, z), e = P(w, d + 1, z);
-      const c0 = P(w + 1, d + 1), e0 = P(w, d + 1), b0 = P(w + 1, d);
-      html += `<g class="cell" style="--c:var(--l${level})" data-date="${date}" data-count="${count}">` +
-        `<polygon class="f" points="${pts([e, c, c0, e0])}"/>` +
-        `<polygon class="s" points="${pts([b, c, c0, b0])}"/>` +
-        `<polygon class="t" points="${pts([a, b, c, e])}"/></g>`;
+      const m = dt(week[0][0]).getUTCMonth();
+      if (m !== last && w > 0 && w < weeks.length - 2) {
+        const [x, y] = P(w, 7.6);
+        html += `<text class="month" x="${x.toFixed(1)}" y="${(y + 10).toFixed(1)}">${dt(week[0][0]).toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })}</text>`;
+      }
+      last = m;
     });
+    graph.innerHTML = '';
+    svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `${p.total} contributions, ${p.label}`);
+    svg.innerHTML = html;
+    graph.append(svg);
+    const bb = svg.getBBox();
+    svg.setAttribute('viewBox', `${bb.x - 2} ${bb.y - 2} ${bb.width + 4} ${bb.height + 4}`);
+
+    const describe = g => {
+      const c = +g.dataset.count;
+      return c ? `${plural(c, 'contribution')} on ${fmt(g.dataset.date)}, busier than ${pct(c)}% of active days`
+               : `No contributions on ${fmt(g.dataset.date)}`;
+    };
+    const detailFor = g => {
+      const c = +g.dataset.count, wk = weekTotal(+g.dataset.w);
+      return `<b>${fmt(g.dataset.date)}</b> · ${plural(c, 'contribution')} · ${n(wk)} that week` +
+        (c ? ` · top ${Math.max(1, 100 - pct(c))}% of days` : '') + `<button id="unpin">clear</button>`;
+    };
+    const resetDetail = () => { $('detail').textContent = 'Hover a day for its count, click to pin it.'; };
+    resetDetail();
+    svg.addEventListener('pointerover', e => {
+      const g = e.target.closest('.cell'); if (!g) return;
+      showTip(describe(g), g.querySelector('.t'));
+    });
+    svg.addEventListener('click', e => {
+      const g = e.target.closest('.cell'); if (!g) return;
+      if (pinned) pinned.classList.remove('on');
+      if (pinned === g) { pinned = null; resetDetail(); return; }
+      pinned = g; g.classList.add('on');
+      $('detail').innerHTML = detailFor(g);
+      $('unpin').onclick = () => { g.classList.remove('on'); pinned = null; resetDetail(); };
+    });
+
+    // months
+    const byMonth = new Map();
+    for (const [date, c] of days) {
+      const k = date.slice(0, 7);
+      const m = byMonth.get(k) || { total: 0, active: 0 };
+      m.total += c; m.active += c ? 1 : 0; byMonth.set(k, m);
+    }
+    const months = [...byMonth].slice(-12);
+    const mMax = Math.max(1, ...months.map(([, m]) => m.total));
+    $('months').innerHTML = '';
+    for (const [k, m] of months) {
+      const b = document.createElement('button');
+      b.dataset.tip = `${fmt(k + '-01', { month: 'long', year: 'numeric' })}: ${plural(m.total, 'contribution')} over ${plural(m.active, 'active day')}`;
+      b.innerHTML = `<i style="height:${Math.max(2, 100 * m.total / mMax)}%"></i><span>${fmt(k + '-01', { month: 'narrow' })}</span>`;
+      const light = on => {
+        svg.classList.toggle('dim', on);
+        svg.querySelectorAll(`.cell[data-m="${k}"]`).forEach(c => c.classList.toggle('hl', on));
+      };
+      b.onpointerenter = () => { if (!monthOn) light(true); };
+      b.onpointerleave = () => { if (!monthOn) light(false); };
+      b.onclick = () => {
+        const was = monthOn === b;
+        if (monthOn) { monthOn.classList.remove('on'); svg.classList.remove('dim'); svg.querySelectorAll('.hl').forEach(c => c.classList.remove('hl')); }
+        monthOn = was ? null : b;
+        if (monthOn) { b.classList.add('on'); light(true); }
+      };
+      $('months').append(b);
+    }
+
+    // stats
+    let longest = 0, run = 0, bestEnd = null;
+    for (const d of days) { run = d[1] ? run + 1 : 0; if (run > longest) { longest = run; bestEnd = d[0]; } }
+    let k = days.length - 1, currentRun = 0;
+    if (!days[k][1]) k--; // today isn't over yet
+    while (k >= 0 && days[k][1]) { currentRun++; k--; }
+    const best = days.reduce((a, b) => b[1] > a[1] ? b : a);
+    $('s-total').textContent = n(p.total);
+    $('s-active').textContent = n(active.length);
+    $('s-active-wrap').dataset.tip = `${Math.round(100 * active.length / days.length)}% of ${n(days.length)} days, averaging ${(p.total / Math.max(1, active.length)).toFixed(1)} on days with any activity`;
+    $('s-long').textContent = plural(longest, 'day');
+    $('s-long-wrap').dataset.tip = longest ? `Ended ${fmt(bestEnd)}` + (p.id === 'last' ? `. Current streak: ${plural(currentRun, 'day')}` : '') : 'No activity in this period';
+    $('s-best').textContent = n(best[1]);
+    $('s-best-wrap').dataset.tip = best[1] ? fmt(best[0]) : 'No activity in this period';
+
+    // kinds
+    const kt = KINDS.reduce((s, [key]) => s + p.kinds[key], 0) || 1;
+    $('kinds').innerHTML = KINDS.filter(([key]) => p.kinds[key]).map(([key, label, color, about]) =>
+      `<i style="flex:${p.kinds[key]};background:${color}" data-tip="${label}: ${n(p.kinds[key])} (${Math.round(100 * p.kinds[key] / kt)}%). ${about}"></i>`).join('');
+    $('kinds-key').innerHTML = KINDS.map(([key, label, color, about]) =>
+      `<span data-tip="${about}"><i style="background:${color}"></i>${label} <b>${n(p.kinds[key])}</b></span>`).join('');
+
+    // weekday averages
+    const wk = Array.from({ length: 7 }, () => ({ t: 0, n: 0 }));
+    for (const [date, c] of days) { const d = dt(date).getUTCDay(); wk[d].t += c; wk[d].n++; }
+    const avg = wk.map(x => x.t / Math.max(1, x.n)), aMax = Math.max(0.01, ...avg);
+    $('week').innerHTML = avg.map((a, d) =>
+      `<div data-tip="${WEEKDAYS[d]}: ${a.toFixed(1)} a day on average, ${n(wk[d].t)} in total"><i style="height:${Math.max(2, 70 * a / aMax)}px"></i><span>${WEEKDAYS[d][0]}</span></div>`).join('');
+
+    // repos
+    const rMax = Math.max(1, ...p.repos.map(r => r[2]));
+    $('repos').innerHTML = p.repos.length ? p.repos.map(([name, url, c, lang, color]) =>
+      `<li><a href="${url}" data-tip="${plural(c, 'commit')}${lang ? ' · ' + lang : ''}">${name}</a><span class="n">${n(c)}</span>` +
+      `<span class="bar"><i style="width:${100 * c / rMax}%;background:${color || 'var(--l3)'}"></i></span></li>`).join('')
+      : '<li class="empty">No public commits in this period.</li>';
   }
 
-  // month labels along the front edge
-  let last = -1;
-  weeks.forEach((week, w) => {
-    const m = new Date(week[0][0] + 'T00:00:00Z').getUTCMonth();
-    if (m !== last && w > 0 && w < weeks.length - 2) {
-      const [x, y] = P(w, 7.6);
-      html += `<text class="month" x="${x.toFixed(1)}" y="${(y + 10).toFixed(1)}">${new Date(Date.UTC(2000, m, 1)).toLocaleString('en', { month: 'short', timeZone: 'UTC' })}</text>`;
-    }
-    last = m;
-  });
-
-  svg.innerHTML = html;
-  box.prepend(svg);
-  const bb = svg.getBBox();
-  svg.setAttribute('viewBox', `${bb.x - 2} ${bb.y - 2} ${bb.width + 4} ${bb.height + 4}`);
-
-  const fmt = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
-  svg.addEventListener('pointerover', e => {
-    const g = e.target.closest('.cell'); if (!g) return;
-    const n = +g.dataset.count;
-    tip.textContent = `${n ? n : 'No'} contribution${n === 1 ? '' : 's'} on ${fmt(g.dataset.date)}`;
-    const r = g.querySelector('.t').getBoundingClientRect(), br = box.getBoundingClientRect();
-    tip.style.left = (r.left + r.width / 2 - br.left) + 'px';
-    tip.style.top = (r.top - br.top) + 'px';
-    tip.classList.add('show');
-  });
-  svg.addEventListener('pointerleave', () => tip.classList.remove('show'));
-
-  // stats
-  const best = days.reduce((a, b) => b[1] > a[1] ? b : a);
-  let longest = 0, run = 0;
-  for (const d of days) { run = d[1] ? run + 1 : 0; longest = Math.max(longest, run); }
-  let i = days.length - 1, current = 0;
-  if (!days[i][1]) i--; // today isn't over yet
-  while (i >= 0 && days[i][1]) { current++; i--; }
-  const n = x => x.toLocaleString('en');
-  document.getElementById('s-total').textContent = n(data.total);
-  document.getElementById('s-best').textContent = n(best[1]);
-  document.getElementById('s-best').parentNode.lastChild.textContent = 'busiest day, ' + fmt(best[0]).slice(5, -5);
-  document.getElementById('s-cur').textContent = current + (current === 1 ? ' day' : ' days');
-  document.getElementById('s-long').textContent = longest + ' days';
+  render(0);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && pinned) $('unpin')?.click(); });
 })();
 </script>
 </body>

@@ -20,11 +20,13 @@ jobs:
       - name: Contribution data for the site
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash .github/contributions.sh ${{ github.repository_owner }} > docs/contributions.json
+        run: |
+          python3 .github/contributions.py ${{ github.repository_owner }} > docs/contributions.json
+          python3 .github/readme_stats.py
       - name: Commit
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -A profile-3d-contrib docs/contributions.json
+          git add -A profile-3d-contrib docs/contributions.json README.md
           git diff --cached --quiet || git commit -m "Update contribution graph"
           git push
