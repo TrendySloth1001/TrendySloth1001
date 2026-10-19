@@ -66,5 +66,5 @@ and customers, the POS payment flows, and keeping the accounting auditable.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg" />
-  <img src="./profile-3d-contrib/profile-gitblue.svg" width="100%" alt="3D contribution graph" />
+  <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="3D contribution graph" />
 </picture>
