@@ -61,3 +61,10 @@ and customers, the POS payment flows, and keeping the accounting auditable.
 </table>
 
 <sub>Deployed with Coolify, reached over Cloudflare Tunnels and SSH. BullMQ and SSH have no brand mark of their own, so they borrow the Redis and shell glyphs.</sub>
+
+### Contributions
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg" />
+  <img src="./profile-3d-contrib/profile-gitblue.svg" width="100%" alt="3D contribution graph" />
+</picture>
