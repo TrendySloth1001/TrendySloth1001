@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nikhil Binwal</title>
+<meta name="description" content="Nikhil Binwal, fourth-year CSE student (AI/ML). Flutter, TypeScript, Node, Postgres.">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --ink: #1c1b19;
+    --muted: #6b6862;
+    --rule: #e4e1da;
+    --accent: #d9480f;
+    --l0: #ebedf0; --l1: #9be9a8; --l2: #40c463; --l3: #30a14e; --l4: #216e39;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0d0c;
+      --ink: #e8e6e1;
+      --muted: #8d8a83;
+      --rule: #262522;
+      --accent: #ff8a3d;
+      --l0: #1d1f23; --l1: #0e4429; --l2: #006d32; --l3: #26a641; --l4: #39d353;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 64px 20px 96px; }
+  a { color: inherit; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+  header h1 {
+    font: 400 40px/1.1 ui-serif, Georgia, "Times New Roman", serif;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  header p { margin: 0 0 16px; color: var(--muted); max-width: 56ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 15px; }
+  .print { margin-left: auto; background: none; border: 0; padding: 0; font: inherit; color: var(--muted); cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .print:hover { color: var(--accent); }
+
+  section { margin-top: 56px; }
+  h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 20px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+  }
+
+  /* contributions */
+  .graph { position: relative; }
+  .graph svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .cell { cursor: default; }
+  .cell .t { fill: var(--c); }
+  .cell .f { fill: color-mix(in srgb, var(--c), #000 16%); }
+  .cell .s { fill: color-mix(in srgb, var(--c), #000 32%); }
+  .cell:hover .t, .cell.on .t { fill: var(--accent); }
+  .cell:hover .f, .cell.on .f { fill: color-mix(in srgb, var(--accent), #000 20%); }
+  .cell:hover .s, .cell.on .s { fill: color-mix(in srgb, var(--accent), #000 38%); }
+  .month { font-size: 10px; fill: var(--muted); }
+  .tip {
+    position: absolute; pointer-events: none; white-space: nowrap;
+    font-size: 13px; padding: 4px 8px; border-radius: 4px;
+    background: var(--ink); color: var(--bg);
+    transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .1s;
+  }
+  .tip.show { opacity: 1; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+  .stats div { font-size: 13px; color: var(--muted); }
+  .stats b { display: block; font: 400 24px/1.2 ui-serif, Georgia, serif; color: var(--ink); }
+  .legend { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--muted); margin-top: 12px; justify-content: flex-end; }
+  .legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  /* work */
+  .project { padding: 0 0 28px; }
+  .project + .project { padding-top: 28px; border-top: 1px solid var(--rule); }
+  .project h3 { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; font-size: 18px; font-weight: 600; }
+  .project h3 span { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .project p { margin: 0 0 8px; }
+  .meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .meta a { color: var(--ink); }
+
+  dl { display: grid; grid-template-columns: 120px 1fr; gap: 10px 20px; margin: 0; }
+  dt { color: var(--muted); font-size: 14px; padding-top: 1px; }
+  dd { margin: 0; }
+
+  footer { margin-top: 72px; font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 560px) {
+    main { padding-top: 40px; }
+    header h1 { font-size: 32px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    dl { grid-template-columns: 1fr; gap: 2px; }
+    dd { margin-bottom: 12px; }
+  }
+
+  @media print {
+    :root { --bg: #fff; --ink: #000; --muted: #555; --rule: #ccc; }
+    main { padding: 0; max-width: none; }
+    .print, .graph, .legend, footer { display: none; }
+    section { margin-top: 24px; break-inside: avoid-page; }
+    .project { break-inside: avoid; }
+    a { text-decoration: none; }
+    .links a[href^="http"]::after { content: " (" attr(data-print) ")"; color: var(--muted); }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Nikhil Binwal</h1>
+  <p>Fourth-year CSE student, specialising in AI/ML. I build mobile apps in Flutter and the TypeScript backends behind them, and I care most about the path a user actually takes through a product.</p>
+  <div class="links">
+    <a href="mailto:nkumawat8956@gmail.com">nkumawat8956@gmail.com</a>
+    <a href="https://github.com/TrendySloth1001" data-print="github.com/TrendySloth1001">GitHub</a>
+    <a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/" data-print="linkedin.com/in/nikhil-binwal-78703b32b">LinkedIn</a>
+    <a href="https://www.instagram.com/nikhilwh0/" data-print="instagram.com/nikhilwh0">Instagram</a>
+    <button class="print" onclick="window.print()">Save as PDF</button>
+  </div>
+</header>
+
+<section>
+  <h2>Last twelve months</h2>
+  <div class="graph" id="graph">
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="legend">Less <i style="background:var(--l0)"></i><i style="background:var(--l1)"></i><i style="background:var(--l2)"></i><i style="background:var(--l3)"></i><i style="background:var(--l4)"></i> More</div>
+  <div class="stats">
+    <div><b id="s-total">–</b>contributions</div>
+    <div><b id="s-best">–</b>busiest day</div>
+    <div><b id="s-cur">–</b>current streak</div>
+    <div><b id="s-long">–</b>longest streak</div>
+  </div>
+</section>
+
+<section>
+  <h2>Selected work</h2>
+
+  <div class="project">
+    <h3>shopxy <span>2026</span></h3>
+    <p>Three surfaces over one backend. A merchant app for inventory, invoices, parties and vendors; a customer app showing invitations and per-shop invoice ledgers; and one Express and Prisma API on Postgres. Both apps share the same JWT shape, so a single account works in either. The hard parts were the account-linking model between merchants and customers, the POS payment flows, and keeping the accounting auditable.</p>
+    <div class="meta">Flutter · Express · Prisma · PostgreSQL · Redis · MinIO · Docker <a href="https://github.com/TrendySloth1001/shopxy">Code</a></div>
+  </div>
+
+  <div class="project">
+    <h3>Keepit <span>2026</span></h3>
+    <p>An end-to-end encrypted vault for passwords, notes, keys and files. The Android client holds every key and encrypts locally; the server only ever stores ciphertext. Argon2id and HKDF for key derivation, AES-256-GCM for storage, resumable multipart uploads for large files.</p>
+    <div class="meta">Flutter · Express · Prisma · Next.js <a href="https://github.com/TrendySloth1001/keepit">Code</a></div>
+  </div>
+
+  <div class="project">
+    <h3>wordseed <span>2026</span></h3>
+    <p>Type a word, get as many sentences as you want. Two language models written from scratch, an n-gram model on a suffix array and a small LSTM, grow sentences around the word, then rank, filter and explain each one mathematically.</p>
+    <div class="meta">Next.js · TypeScript · Python · PyTorch <a href="https://wordseed-five.vercel.app">Live</a> <a href="https://github.com/TrendySloth1001/wordseed">Code</a></div>
+  </div>
+
+  <div class="project">
+    <h3>MrArgue <span>2026</span></h3>
+    <p>Two local LLMs debate opposite sides of any topic while a third judges each turn on claim quality and how directly it answers the other side. Responses stream over SSE, and retrieval adds factual context to each argument.</p>
+    <div class="meta">NestJS · Flutter · Ollama · RAG <a href="https://github.com/TrendySloth1001/argumentbot">Code</a></div>
+  </div>
+
+  <div class="project">
+    <h3>Questly <span>AceHack 5.0</span></h3>
+    <p>A bounty board for real-world tasks. People pin a task on a map with an ALGO reward held in smart-contract escrow; someone claims it, submits photo proof, and is paid on-chain when the poster approves.</p>
+    <div class="meta">Flutter · Node.js · Algorand <a href="https://questly.anskservices.com">Live</a> <a href="https://github.com/TrendySloth1001/Acehack-questly">Code</a></div>
+  </div>
+</section>
+
+<section>
+  <h2>Stack</h2>
+  <dl>
+    <dt>Languages</dt><dd>TypeScript, Dart, Python, JavaScript, C++</dd>
+    <dt>Frameworks</dt><dd>Flutter, React, Next.js, Node.js, Express, NestJS, PyTorch</dd>
+    <dt>Data</dt><dd>PostgreSQL, Prisma, Redis, BullMQ, MinIO</dd>
+    <dt>Infra</dt><dd>Docker, Nginx, Coolify, Cloudflare Tunnels, Linux</dd>
+  </dl>
+</section>
+
+<footer>Contribution data refreshes daily from GitHub.</footer>
+
+</main>
+
+<script>
+(async function () {
+  const box = document.getElementById('graph');
+  const tip = document.getElementById('tip');
+  let data;
+  try { data = await (await fetch('contributions.json', { cache: 'no-cache' })).json(); }
+  catch (e) { box.insertAdjacentHTML('afterbegin', '<p style="color:var(--muted)">Couldn’t load contribution data.</p>'); return; }
+
+  // weeks: [[ [date, count, level], ... ], ...]
+  const weeks = data.weeks;
+  const days = weeks.flat();
+  const max = Math.max(1, ...days.map(d => d[1]));
+
+  // Oblique projection: weeks run right and slightly down, weekdays run down-left.
+  const U = [11, 3.2], V = [-5.6, 5.4], H = 64;
+  const ox = 7 * -V[0] + 4, oy = H + 6;
+  const P = (w, d, z = 0) => [ox + w * U[0] + d * V[0], oy + w * U[1] + d * V[1] - z];
+  const pts = a => a.map(p => p.map(n => n.toFixed(1)).join(',')).join(' ');
+
+  const width = ox + weeks.length * U[0] + 6;
+  const height = oy + weeks.length * U[1] + 7 * V[1] + 18;
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${width.toFixed(0)} ${height.toFixed(0)}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', `${data.total} contributions in the last year`);
+
+  let html = '';
+  for (let d = 0; d < 7; d++) {
+    weeks.forEach((week, w) => {
+      const day = week.find(x => new Date(x[0] + 'T00:00:00Z').getUTCDay() === d);
+      if (!day) return;
+      const [date, count, level] = day;
+      const z = count ? 2 + Math.sqrt(count / max) * H : 1;
+      const a = P(w, d, z), b = P(w + 1, d, z), c = P(w + 1, d + 1, z), e = P(w, d + 1, z);
+      const c0 = P(w + 1, d + 1), e0 = P(w, d + 1), b0 = P(w + 1, d);
+      html += `<g class="cell" style="--c:var(--l${level})" data-date="${date}" data-count="${count}">` +
+        `<polygon class="f" points="${pts([e, c, c0, e0])}"/>` +
+        `<polygon class="s" points="${pts([b, c, c0, b0])}"/>` +
+        `<polygon class="t" points="${pts([a, b, c, e])}"/></g>`;
+    });
+  }
+
+  // month labels along the front edge
+  let last = -1;
+  weeks.forEach((week, w) => {
+    const m = new Date(week[0][0] + 'T00:00:00Z').getUTCMonth();
+    if (m !== last && w > 0 && w < weeks.length - 2) {
+      const [x, y] = P(w, 7.6);
+      html += `<text class="month" x="${x.toFixed(1)}" y="${(y + 10).toFixed(1)}">${new Date(Date.UTC(2000, m, 1)).toLocaleString('en', { month: 'short', timeZone: 'UTC' })}</text>`;
+    }
+    last = m;
+  });
+
+  svg.innerHTML = html;
+  box.prepend(svg);
+  const bb = svg.getBBox();
+  svg.setAttribute('viewBox', `${bb.x - 2} ${bb.y - 2} ${bb.width + 4} ${bb.height + 4}`);
+
+  const fmt = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+  svg.addEventListener('pointerover', e => {
+    const g = e.target.closest('.cell'); if (!g) return;
+    const n = +g.dataset.count;
+    tip.textContent = `${n ? n : 'No'} contribution${n === 1 ? '' : 's'} on ${fmt(g.dataset.date)}`;
+    const r = g.querySelector('.t').getBoundingClientRect(), br = box.getBoundingClientRect();
+    tip.style.left = (r.left + r.width / 2 - br.left) + 'px';
+    tip.style.top = (r.top - br.top) + 'px';
+    tip.classList.add('show');
+  });
+  svg.addEventListener('pointerleave', () => tip.classList.remove('show'));
+
+  // stats
+  const best = days.reduce((a, b) => b[1] > a[1] ? b : a);
+  let longest = 0, run = 0;
+  for (const d of days) { run = d[1] ? run + 1 : 0; longest = Math.max(longest, run); }
+  let i = days.length - 1, current = 0;
+  if (!days[i][1]) i--; // today isn't over yet
+  while (i >= 0 && days[i][1]) { current++; i--; }
+  const n = x => x.toLocaleString('en');
+  document.getElementById('s-total').textContent = n(data.total);
+  document.getElementById('s-best').textContent = n(best[1]);
+  document.getElementById('s-best').parentNode.lastChild.textContent = 'busiest day, ' + fmt(best[0]).slice(5, -5);
+  document.getElementById('s-cur').textContent = current + (current === 1 ? ' day' : ' days');
+  document.getElementById('s-long').textContent = longest + ' days';
+})();
+</script>
+</body>
+</html>

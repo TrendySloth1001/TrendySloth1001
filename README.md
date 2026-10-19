@@ -7,16 +7,37 @@ problem. Most of my time goes into rethinking the flow a user actually takes
 through a product rather than the one we assumed, and into writing code that
 stays reasonable as it grows.
 
-### shopxy
+<a href="mailto:nkumawat8956@gmail.com">nkumawat8956@gmail.com</a> ·
+<a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/">LinkedIn</a> ·
+<a href="https://www.instagram.com/nikhilwh0/">Instagram</a> ·
+<a href="https://trendysloth1001.github.io/TrendySloth1001/">Résumé site</a>
 
-Three surfaces over one backend, sketched in the header above. A merchant app for
-inventory, invoices, parties and vendors. A customer companion app showing
-invitations and per-shop invoice ledgers. One Express and Prisma backend on
-Postgres, with the same JWT shape across both apps so a single account works in
-either. Both clients are Flutter. Redis and MinIO sit behind it, all on Docker.
+### Selected work
 
-The parts worth the trouble have been the account-linking model between merchants
-and customers, the POS payment flows, and keeping the accounting auditable.
+**[shopxy](https://github.com/TrendySloth1001/shopxy)**: three surfaces over one backend, sketched in the header above.
+A merchant app for inventory, invoices, parties and vendors, a customer app for invitations and per-shop
+ledgers, and one Express and Prisma API on Postgres. The same JWT shape works across both apps, so one
+account works in either. The parts worth the trouble were account linking between merchants and customers,
+the POS payment flows, and keeping the accounting auditable.<br>
+<sub>Flutter · Express · Prisma · PostgreSQL · Redis · MinIO · Docker</sub>
+
+**[Keepit](https://github.com/TrendySloth1001/keepit)**: an end-to-end encrypted vault for passwords, notes,
+keys and files. The phone holds every key; the server only ever sees ciphertext.<br>
+<sub>Flutter · Express · Prisma · Argon2id · AES-256-GCM</sub>
+
+**[wordseed](https://github.com/TrendySloth1001/wordseed)** ([live](https://wordseed-five.vercel.app)): type a
+word, get sentences. An n-gram model on a suffix array and a small LSTM, both written from scratch, with every
+sentence explained mathematically.<br>
+<sub>Next.js · TypeScript · Python · PyTorch</sub>
+
+**[MrArgue](https://github.com/TrendySloth1001/argumentbot)**: two local LLMs debate opposite sides of a topic
+while a third judges each turn. Streams over SSE, with retrieval for factual context.<br>
+<sub>NestJS · Flutter · Ollama</sub>
+
+**[Questly](https://github.com/TrendySloth1001/Acehack-questly)** ([live](https://questly.anskservices.com)):
+built at AceHack 5.0. Real-world bounties pinned on a map, paid out of Algorand smart-contract escrow once the
+poster approves the proof.<br>
+<sub>Flutter · Node.js · Algorand</sub>
 
 ### Technologies
 
@@ -64,7 +85,11 @@ and customers, the POS payment flows, and keeping the accounting auditable.
 
 ### Contributions
 
+<a href="https://trendysloth1001.github.io/TrendySloth1001/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
   <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="3D contribution graph" />
 </picture>
+</a>
+
+<sub>Click through for the interactive version with daily counts.</sub>
