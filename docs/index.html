@@ -85,6 +85,14 @@
   .meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
   .meta a { color: var(--ink); }
 
+  .links a { display: inline-flex; align-items: center; gap: 6px; }
+  .ico { width: 14px; height: 14px; flex: none; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; line-height: 1; padding: 6px 10px 6px 8px;
+    border: 1px solid var(--rule); border-radius: 999px;
+  }
   dl { display: grid; grid-template-columns: 120px 1fr; gap: 10px 20px; margin: 0; }
   dt { color: var(--muted); font-size: 14px; padding-top: 1px; }
   dd { margin: 0; }
@@ -117,10 +125,10 @@
   <h1>Nikhil Binwal</h1>
   <p>Fourth-year CSE student, specialising in AI/ML. I build mobile apps in Flutter and the TypeScript backends behind them, and I care most about the path a user actually takes through a product.</p>
   <div class="links">
-    <a href="mailto:nkumawat8956@gmail.com">nkumawat8956@gmail.com</a>
-    <a href="https://github.com/TrendySloth1001" data-print="github.com/TrendySloth1001">GitHub</a>
-    <a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/" data-print="linkedin.com/in/nikhil-binwal-78703b32b">LinkedIn</a>
-    <a href="https://www.instagram.com/nikhilwh0/" data-print="instagram.com/nikhilwh0">Instagram</a>
+    <a href="mailto:nkumawat8956@gmail.com" data-print="nkumawat8956@gmail.com"><img class="ico" src="https://cdn.simpleicons.org/gmail" alt="" width="14" height="14">nkumawat8956@gmail.com</a>
+    <a href="https://github.com/TrendySloth1001" data-print="github.com/TrendySloth1001"><img class="ico" src="https://cdn.simpleicons.org/github/_/white" alt="" width="14" height="14">GitHub</a>
+    <a href="https://www.linkedin.com/in/nikhil-binwal-78703b32b/" data-print="linkedin.com/in/nikhil-binwal-78703b32b"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+    <a href="https://www.instagram.com/nikhilwh0/" data-print="instagram.com/nikhilwh0"><img class="ico" src="https://cdn.simpleicons.org/instagram" alt="" width="14" height="14">Instagram</a>
     <button class="print" onclick="window.print()">Save as PDF</button>
   </div>
 </header>
@@ -176,10 +184,10 @@
 <section>
   <h2>Stack</h2>
   <dl>
-    <dt>Languages</dt><dd>TypeScript, Dart, Python, JavaScript, C++</dd>
-    <dt>Frameworks</dt><dd>Flutter, React, Next.js, Node.js, Express, NestJS, PyTorch</dd>
-    <dt>Data</dt><dd>PostgreSQL, Prisma, Redis, BullMQ, MinIO</dd>
-    <dt>Infra</dt><dd>Docker, Nginx, Coolify, Cloudflare Tunnels, Linux</dd>
+    <dt>Languages</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/typescript" alt="" width="14" height="14">TypeScript</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/javascript" alt="" width="14" height="14">JavaScript</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/dart" alt="" width="14" height="14">Dart</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/python" alt="" width="14" height="14">Python</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/cplusplus" alt="" width="14" height="14">C++</span></dd>
+    <dt>Frameworks</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/flutter" alt="" width="14" height="14">Flutter</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/react" alt="" width="14" height="14">React</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nextdotjs/_/white" alt="" width="14" height="14">Next.js</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nodedotjs" alt="" width="14" height="14">Node.js</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/express/_/white" alt="" width="14" height="14">Express</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nestjs" alt="" width="14" height="14">NestJS</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/pytorch" alt="" width="14" height="14">PyTorch</span></dd>
+    <dt>Data</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/postgresql" alt="" width="14" height="14">PostgreSQL</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/prisma/_/white" alt="" width="14" height="14">Prisma</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">Redis</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/redis" alt="" width="14" height="14">BullMQ</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/minio" alt="" width="14" height="14">MinIO</span></dd>
+    <dt>Infra</dt><dd class="pills"><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/docker" alt="" width="14" height="14">Docker</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/nginx" alt="" width="14" height="14">Nginx</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/coolify" alt="" width="14" height="14">Coolify</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/cloudflare" alt="" width="14" height="14">Cloudflare</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/linux" alt="" width="14" height="14">Linux</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/git" alt="" width="14" height="14">Git</span><span class="pill"><img class="ico" src="https://cdn.simpleicons.org/gnubash" alt="" width="14" height="14">SSH</span></dd>
   </dl>
 </section>
 
