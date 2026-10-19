@@ -1,3 +1,4 @@
 *.png
 *.ttf
 gen.py
+!docs/**/*.png
