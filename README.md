@@ -48,7 +48,7 @@ The full résumé lives there: experience, projects, a gallery of app screens, s
 <!-- stats:start -->
 | Last 12 months | Active days | Public commits | Private work | Pull requests | Longest streak | Busiest day |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| **6,034** contributions | 336 of 367 | 2,611 | 3,353 | 23 | 121 days | 224 on 2 Oct 2026 |
+| **6,034** contributions | 336 of 368 | 2,611 | 3,353 | 23 | 121 days | 224 on 2 Oct 2026 |
 
-<sub>By year: 2026: 5,869 · 2025: 440 · 2024: 99 · 2023: 3. Updated 2026-11-24.</sub>
+<sub>By year: 2026: 5,869 · 2025: 440 · 2024: 99 · 2023: 3. Updated 2026-11-25.</sub>
 <!-- stats:end -->
